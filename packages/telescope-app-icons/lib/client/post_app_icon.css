@@ -1,0 +1,10 @@
+.post-app-icon{
+  width: 84px;
+  height: 64px;
+  padding: 0 0 0 10px;
+}
+
+.post-app-icon img {
+    width: 64px;
+    height: 64px;
+}
