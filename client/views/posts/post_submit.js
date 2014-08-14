@@ -148,6 +148,52 @@ Template[getTemplate('post_submit')].events({
       alert("Please fill in an URL first!");
       $(".get-title-link").removeClass("loading");
     }
+  },
+  
+  'change #url': function (e, i) {
+    
+    e.preventDefault();
+    var url=$("#url").val();
+
+    var rePlayStore = /^https?:\/\/play\.google\.com\/store\/apps\/details\?id=.+/;
+    var reAppleStore = /^https?:\/\/itunes\.apple\.com\/[a-z]{2}\/app\/[^\/]+\/id[0-9]+(\?.*)?/;
+	
+    if( rePlayStore.test( url ) || reAppleStore.test( url ) ) {
+
+      // before
+      $(".get-title-link").addClass("loading");
+      $("input[type=submit]").addClass( "disabled" );
+      $("#url").prop( "disabled", true );
+      $("#title").prop( "disabled", true );
+
+      Meteor.call('getAppTitleForUrl', url, function(error, title) {
+        if( title ) {
+          // success
+          $("#title").val(title);
+          
+          $("#title").prop( "readonly", true )
+          $("#title").css({ "border-style": "none"});
+          $(".get-title-link").hide();
+        } else {
+          // failure
+          alert("Sorry, couldn't find the app title...");
+          $("#title").prop( "readonly", false );
+          $("#title").css({ "border-style": '' });
+          $(".get-title-link").show();
+        }
+
+        // after
+        $(".get-title-link").removeClass("loading");
+        $("input[type=submit]").removeClass( "disabled" );
+        $("#url").prop( "disabled", false );
+        $("#title").prop( "disabled", false );
+      });
+
+    } else {
+        $("#title").prop( "readonly", false );
+        $("#title").css({ "border-style": '' });
+        $(".get-title-link").show();
+    }
   }
 
 });
