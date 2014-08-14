@@ -2,7 +2,7 @@ Package.describe({summary: "Telescope grab app icons from Google/Apple stores"})
 
 Package.on_use(function (api) {
 
-  api.use(['telescope-base'], ['client', 'server']);
+  api.use(['telescope-base', 'webapp'], ['client', 'server']);
 
   api.use(['templating'], ['client']);
 
@@ -11,6 +11,7 @@ Package.on_use(function (api) {
   ], ['client', 'server']);
 
   api.add_files([
+    'lib/server/get_app_icon.js'
   ], ['server']);
 
   api.add_files([

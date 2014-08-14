@@ -1,4 +1,5 @@
 {
   "juice": "0.4.0",
-  "html-to-text": "0.1.0"
+  "html-to-text": "0.1.0",
+  "google-play-search" : "0.0.2" 
 }

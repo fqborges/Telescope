@@ -1,11 +1,7 @@
 <template name="postAppIcon">
-  {{#if isPlayStoreLink}}
-    <img id={{appIconId}} class="app-icon" src="{{iconPlayStoreURL}}" />
-  {{else}}
-  {{#if isAppleStoreLink}}
-    <img id={{appIconId}} class="app-icon" src="{{iconAppleStoreURL}}" />
+  {{#if appIcon}}
+    <img class="app-icon" src="{{appIcon}}" />
   {{else}}
     <!-- TODO: no icon -->
-  {{/if}}
   {{/if}}
 </template>
